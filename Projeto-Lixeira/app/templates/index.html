@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <title>Lixeira Inteligente</title>
+</head>
+<body>
+    <div class="title">
+        <h1>Lixeira Inteligente</h1>
+    </div>
+
+    <section class="controles">
+        <h2>Controles</h2>
+        <a class="button_fechar_tampa" href="/fechar-tampa">Fechar Tampa</a>
+        <a class="button_abrir_tampa" href="/abre-tampa">Abrir Tampa</a>
+    </section>
+
+    <section class="status_lixeira">
+        <h2>Status da Lixeira</h2>
+        <div class="license-status">
+            <div class="status-label">Status da Lixeira</div>
+            <div class="status-value">
+                {% if status_lixeira == True %}
+                    Disponível
+                {% else %}
+                    Indisponível
+                {% endif %}
+            </div>
+            <div class="details-label">Detalhes</div>
+            <div class="details-value">Última atualização: {{registro_tampa}}</div>
+        </div>
+
+    </section>
+
+    <section class="monitoramento">
+        <h2>Monitoramento em tempo Real</h2>
+        <div class="real-time-monitoring">
+            <div class="occupation-label">Ocupação</div>
+            <div class="occupation-bar" style="width: {{ocup_lixeira}}"></div>
+            <h5>{{ocup_lixeira}} de ocupação</h5>
+        </div>
+    </section>
+
+    <section class="historico">
+        <h2>Historico</h2>
+        <table>
+            <tr>
+                <th>Data</th>
+                <th>Evento</th>
+            </tr>
+            {% for i in registro_tampa%}
+                <tr>
+                    <td>{{i}}</td>
+                    <td>Tampa aberta</td>
+                </tr>
+        </table>
+    </section>
+
+</body>
+</html>
